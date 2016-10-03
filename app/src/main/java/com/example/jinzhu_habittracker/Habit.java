@@ -24,10 +24,6 @@ public class Habit {
         return habit;
     }
 
-    public Date getDate () {
-        return date;
-    }
-
     public ArrayList<Integer> getDayList(){
         return day;
     }
@@ -45,7 +41,7 @@ public class Habit {
         complete.clear();
     }
 
-    public ArrayList<Completion> getCompletion_records() {
+    public ArrayList<Completion> getCompletions() {
         return this.complete;
     }
 

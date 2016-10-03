@@ -36,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // call loadFromFile() to make sure when app open naxt time, former data was still there
         loadFromFile();
         todayHabit.clear();
         oldHabitsList = (ListView) findViewById(R.id.listView);
 
+        // set click listener on listview to check out completion
         oldHabitsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onResume();
         todayHabit.clear();
+        // call method on the new user added habit to check whether it is a today's habit
         todayHabit = convertDays(habitList);
         myAdapter.clear();
         myAdapter.addAll(todayHabit);
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // use to convert the integer day stored in dayList to "real" day
     // Code taken from http://stackoverflow.com/questions/5270272/how-to-determine-day-of-week-by-passing-specific-date
     private ArrayList<Habit> convertDays (HabitList habits ) {
         ArrayList<Habit> HabitList1 = habits.getHabit();
@@ -111,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
             //Code taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             Type listType = new TypeToken<ArrayList<Habit>>() {}.getType();
             habits = gson.fromJson(in, listType);
+            if(habits == null) {
+                habits = new ArrayList<>();
+            }
             habitList.update(habits);
 
         } catch (FileNotFoundException e) {

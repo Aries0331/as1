@@ -13,15 +13,26 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AddActivity extends AppCompatActivity {
 
     public static final String FILENAME = "file.sav";
     private EditText bodyText;
+
+    // show today's date and change format to YYYY-MM-DD
+    // code taken from http://stackoverflow.com/questions/10312889/how-to-get-date-object-in-yyyy-mm-dd-format-in-android
+    private EditText date;
+    private Date today = new Date();
+    String fDate = new SimpleDateFormat("yyyy-MM-dd").format(today);
+
+
     public static HabitList habitList = new HabitList();
     private ArrayList<Integer> dayList = new ArrayList<Integer>();
 
+    // Checkbox buttons
     private CheckBox mon;
     private CheckBox tue;
     private CheckBox wed;
@@ -40,6 +51,9 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         bodyText = (EditText) findViewById(R.id.body);
+        date = (EditText) findViewById(R.id.date);
+        date.setHint(fDate);
+
         Button saveButton = (Button) findViewById(R.id.save);
 
         // CheckBox
@@ -52,7 +66,7 @@ public class AddActivity extends AppCompatActivity {
         sun = (CheckBox) findViewById(R.id.Sun);
 
 
-        /** Called when the user clicks the Send button */
+        /** Called when the user clicks the save button */
         if (saveButton != null) {
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -77,8 +91,9 @@ public class AddActivity extends AppCompatActivity {
 
                     // text field
                     String text = bodyText.getText().toString();
-                    // Add new Habit to Habit List with sepecific day
+                    // Add new Habit to Habit List with specific day
                     Habit MyNewHabit = new Habit(text, dayList);
+                    // add this new habit into habitlist with its day
                     MainActivity.habitList.add(MyNewHabit);
                     saveInFile();
                     finish();

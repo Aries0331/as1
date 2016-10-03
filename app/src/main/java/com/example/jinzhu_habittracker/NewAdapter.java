@@ -17,6 +17,7 @@ import java.util.Calendar;
  * Created by Aries on 9/30/16.
  */
 
+// A user defined adapter used to count number of completions
 // Code from https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
 public class NewAdapter extends ArrayAdapter<Habit> {
 
@@ -47,7 +48,7 @@ public class NewAdapter extends ArrayAdapter<Habit> {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(todayDate);
         Calendar cal2 = Calendar.getInstance();
-        for(Completion aCompletion: habit.getCompletion_records()){
+        for(Completion aCompletion: habit.getCompletions()){
             cal2.setTime(aCompletion.getDate());
             if (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
                     cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)){

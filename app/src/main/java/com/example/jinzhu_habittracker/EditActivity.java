@@ -30,6 +30,7 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        // Send message between two activities
         // code from http://stackoverflow.com/questions/10674388/nullpointerexception-from-getextras
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -48,7 +49,7 @@ public class EditActivity extends AppCompatActivity {
         HabitName.setText(habit.getHabit());
         Count.setText(String.valueOf(habit.getCount()));
 
-        // If the delete Delete Record Button click
+        // If the Delete Record Button click
         if (DeleteAll != null) {
             DeleteAll.setOnClickListener(new View.OnClickListener(){
 
@@ -94,7 +95,5 @@ public class EditActivity extends AppCompatActivity {
             throw new RuntimeException();
         }
     }
-
-
 
 }
