@@ -1,6 +1,6 @@
 # as1
 
-video link: https://youtu.be/H1x1G43UqRc
+video link: https://youtu.be/-sSFZeyZY5U
 
 This is the first assignment for Fall 2016 CMPUT301 with a little application called HabitTracker.
 Discussed work with Linkai, Ting, Xizi.
